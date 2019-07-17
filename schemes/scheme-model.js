@@ -6,7 +6,7 @@ module.exports = {
     add,
     // addStep,
     update,
-    // remove
+    remove
 };
 
 
@@ -47,3 +47,12 @@ function update(changes, id) {
         .where({ id })
         .update(changes);
 }
+
+function remove(id) {
+    return db('schemes')
+        .where('id', id)
+        .del();
+}
+
+
+
