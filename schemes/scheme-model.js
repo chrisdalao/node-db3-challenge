@@ -3,7 +3,7 @@ module.exports = {
     find,
     findById,
     findSteps,
-    // add,
+    add,
     // addStep,
     // update,
     // remove
@@ -33,3 +33,12 @@ function findSteps(schemeId) {
         .select('st.id', 'sc.scheme_name', 'st.step_number', 'st.instructions')
         .where('st.scheme_id', schemeId);
 }
+
+function add(scheme) {
+    return db('schemes')
+        .insert(scheme)
+        .then(id => {
+            return findById(id[0]);
+        });
+}
+
