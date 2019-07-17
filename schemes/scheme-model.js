@@ -42,6 +42,13 @@ function add(scheme) {
         });
 }
 
+// function addStep(step) {
+//     return db('steps')
+//         .insert(step)
+//         .then(ids => ({ id: ids[0] }));
+// }
+
+
 function update(changes, id) {
     return db('schemes')
         .where({ id })
@@ -50,8 +57,15 @@ function update(changes, id) {
 
 function remove(id) {
     return db('schemes')
-        .where('id', id)
-        .del();
+        .where({ id })
+        .del()
+        .then(scheme => {
+            if (scheme) {
+                return scheme;
+            } else {
+                return null;
+            }
+        });
 }
 
 
